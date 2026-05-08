@@ -2,14 +2,6 @@
 
 Native iOS and Android clients for the [Muxy](https://github.com/muxy-app/muxy) macOS terminal.
 
-```
-.
-├── ios/        SwiftUI app (iOS 17+)
-└── android/    Kotlin / Jetpack Compose app (minSdk 29)
-```
-
-The two apps share no code. Each talks to a Muxy mac server over WebSocket (default port `4865`).
-
 ## Install
 
 ### iOS (TestFlight)
@@ -28,23 +20,10 @@ The two apps share no code. Each talks to a Muxy mac server over WebSocket (defa
 
 ## Development
 
-### iOS
-
 ```sh
-cd ios
-open MuxyMobile.xcodeproj
-# or run on a simulator:
-scripts/run-mobile.sh
+npm install
+npm start
 ```
-
-### Android
-
-```sh
-cd android
-./gradlew assembleDebug
-```
-
-Open `android/` in Android Studio for development.
 
 ## License
 
