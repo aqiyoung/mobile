@@ -31,7 +31,12 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
+
+# local release credentials (drop .p12, .p8, .jks, .mobileprovision, service-account JSON here)
+/.credentials/*
+!/.credentials/.gitkeep
 
 # typescript
 *.tsbuildinfo
@@ -46,3 +51,6 @@ app-example
 /src/components/terminal/xtermBundle.ts
 
 .claude
+
+# python venv created by scripts/release-android.sh for Play upload
+.venv-play-upload/

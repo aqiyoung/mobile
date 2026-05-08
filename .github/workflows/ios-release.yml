@@ -125,8 +125,10 @@ jobs:
         env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
         run: |
-          mkdir -p ios/private_keys
+          mkdir -p ios/private_keys ~/.appstoreconnect/private_keys
           echo "$APP_STORE_CONNECT_API_KEY" > ios/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+          cp ios/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8 \
+            ~/.appstoreconnect/private_keys/
 
       - name: Install App Store provisioning profile
         id: profile

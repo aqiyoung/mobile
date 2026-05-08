@@ -2,7 +2,7 @@
   "expo": {
     "name": "Muxy",
     "slug": "muxy-mobile",
-    "version": "0.0.1",
+    "version": "0.3.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "muxy",
@@ -15,8 +15,10 @@
         "NSLocalNetworkUsageDescription": "Muxy connects to your Mac on the local network to control its terminal sessions.",
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true
-        }
-      }
+        },
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "buildNumber": "1"
     },
     "android": {
       "package": "com.muxy.app",
@@ -25,7 +27,8 @@
         "foregroundImage": "./assets/images/android-icon-foreground.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "versionCode": 1
     },
     "web": {
       "output": "static",
