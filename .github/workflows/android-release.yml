@@ -18,6 +18,30 @@ on:
         description: "Version code (integer, defaults to a Unix timestamp)"
         required: false
         type: string
+  workflow_call:
+    inputs:
+      version_name:
+        required: true
+        type: string
+      version_code:
+        required: false
+        type: string
+      skip_release_tag:
+        description: "Skip the GitHub Release step (caller will create the tag)"
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      ANDROID_SIGNING_KEY_BASE64:
+        required: true
+      ANDROID_KEY_STORE_PASSWORD:
+        required: true
+      ANDROID_KEY_ALIAS:
+        required: true
+      ANDROID_KEY_PASSWORD:
+        required: true
+      PLAY_SERVICE_ACCOUNT_JSON:
+        required: false
 
 jobs:
   release-android:
@@ -152,6 +176,7 @@ jobs:
           changesNotSentForReview: ${{ steps.validate.outputs.track == 'production' }}
 
       - name: Create GitHub Release
+        if: ${{ !inputs.skip_release_tag }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

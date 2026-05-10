@@ -11,6 +11,36 @@ on:
         description: "Build number (defaults to run number)"
         required: false
         type: string
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      build_number:
+        required: false
+        type: string
+      skip_release_tag:
+        description: "Skip the GitHub Release step (caller will create the tag)"
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      APPLE_DISTRIBUTION_CERTIFICATE:
+        required: true
+      APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD:
+        required: true
+      KEYCHAIN_PASSWORD:
+        required: true
+      APP_STORE_CONNECT_API_KEY:
+        required: true
+      APP_STORE_CONNECT_KEY_ID:
+        required: true
+      APP_STORE_CONNECT_ISSUER_ID:
+        required: true
+      APP_STORE_PROVISIONING_PROFILE:
+        required: true
+      APPLE_TEAM_ID:
+        required: true
 
 jobs:
   release-ios:
@@ -290,6 +320,7 @@ jobs:
             ios/build/export/*.ipa
 
       - name: Create GitHub Release
+        if: ${{ !inputs.skip_release_tag }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
