@@ -235,7 +235,7 @@ export function TerminalView({ paneId }: Props) {
 
         {ownershipLost ? (
           <View style={[styles.fullOverlay, { backgroundColor: tokens.surface.primary }]}>
-            <Text style={[styles.title, { color: tokens.text.primary }]}>Mac took control</Text>
+            <Text style={[styles.title, { color: tokens.text.primary }]}>Desktop took control</Text>
             <Text style={[styles.body, { color: tokens.text.muted }]}>
               {sessionForUs?.kind === 'lost' && sessionForUs.takenBy
                 ? `${sessionForUs.takenBy} is using this terminal.`

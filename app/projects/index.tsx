@@ -85,7 +85,7 @@ export default function ProjectsScreen() {
     return (
       <Centered tokens={tokens}>
         <Text style={[styles.emptyTitle, { color: tokens.text.primary }]}>No projects yet</Text>
-        <Text style={[styles.emptyBody, { color: tokens.text.muted }]}>Create one in Muxy on your Mac.</Text>
+        <Text style={[styles.emptyBody, { color: tokens.text.muted }]}>Create one in Muxy on your desktop.</Text>
       </Centered>
     );
   };

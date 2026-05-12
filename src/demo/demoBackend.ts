@@ -17,7 +17,7 @@ import type {
 } from '@/transport';
 
 export const DEMO_DEVICE_ID = '00000000-0000-0000-0000-0000000000DE';
-export const DEMO_DEVICE_NAME = 'Demo Mac';
+export const DEMO_DEVICE_NAME = 'Demo Desktop';
 export const DEMO_DEVICE_HOST = '192.168.1.42';
 export const DEMO_DEVICE_PORT = 4865;
 export const DEMO_CLIENT_ID = '00000000-0000-0000-0000-00000000C11D';

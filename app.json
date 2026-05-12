@@ -12,7 +12,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.muxy.app",
       "infoPlist": {
-        "NSLocalNetworkUsageDescription": "Muxy connects to your Mac on the local network to control its terminal sessions.",
+        "NSLocalNetworkUsageDescription": "Muxy connects to your desktop on the local network to control its terminal sessions.",
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true
         },

@@ -127,7 +127,7 @@ export default function WorkspaceScreen() {
         <Centered tokens={tokens}>
           <Text style={[styles.title, { color: tokens.text.primary }]}>No tabs</Text>
           <Text style={[styles.hint, { color: tokens.text.muted }]}>
-            Open Muxy on your Mac and create a tab in this project.
+            Open Muxy on your desktop and create a tab in this project.
           </Text>
         </Centered>
       ) : (

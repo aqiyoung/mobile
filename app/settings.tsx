@@ -95,7 +95,7 @@ export default function SettingsScreen() {
           <View style={styles.toggleText}>
             <Text style={[styles.rowLabel, { color: tokens.text.primary }]}>Demo Mode</Text>
             <Text style={[styles.rowHint, { color: tokens.text.muted }]}>
-              Loads sample data so you can try the app without a Mac. Switching it off restores your real devices.
+              Loads sample data so you can try the app without a desktop. Switching it off restores your real devices.
             </Text>
           </View>
           <Switch

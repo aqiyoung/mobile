@@ -109,7 +109,7 @@ function waitForOpen(client: WSClient): Promise<void> {
 function mapPairError(err: unknown): PairingError {
   if (err instanceof PairingError) return err;
   if (isWSError(err)) {
-    if (err.code === 403) return new PairingError('denied', 403, 'Pairing was denied on the Mac');
+    if (err.code === 403) return new PairingError('denied', 403, 'Pairing was denied on the desktop');
     if (err.code === 408) return new PairingError('timeout', 408, 'Pairing timed out');
     return new PairingError('unknown', err.code, err.message);
   }

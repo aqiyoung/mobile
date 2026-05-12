@@ -28,7 +28,7 @@ const SLIDES: Slide[] = [
   {
     badge: 'app-icon',
     title: 'Welcome to Muxy',
-    body: 'The remote control for your Mac terminal. Drive sessions, switch projects, and ship changes from your phone.',
+    body: 'The remote control for your desktop terminal. Drive sessions, switch projects, and ship changes from your phone.',
   },
   {
     badge: 'sparkles-outline',
@@ -38,12 +38,12 @@ const SLIDES: Slide[] = [
       {
         icon: 'wifi-outline',
         title: 'Same network',
-        body: 'Your phone and Mac talk directly over your local network.',
+        body: 'Your phone and desktop talk directly over your local network.',
       },
       {
         icon: 'toggle-outline',
         title: 'Enable the Mobile server',
-        body: 'On your Mac: Muxy → Settings → Mobile, then toggle the server on.',
+        body: 'On your desktop: Muxy → Settings → Mobile, then toggle the server on.',
       },
       {
         icon: 'flash-outline',
@@ -54,8 +54,8 @@ const SLIDES: Slide[] = [
   },
   {
     badge: 'keypad-outline',
-    title: 'Pair your Mac',
-    body: 'Enter your Mac’s IP address and the port shown in Muxy’s Mobile settings. Default port is 4865.',
+    title: 'Pair your desktop',
+    body: 'Enter your desktop’s IP address and the port shown in Muxy’s Mobile settings. Default port is 4865.',
   },
 ];
 
@@ -145,7 +145,7 @@ export default function OnboardingScreen() {
             { backgroundColor: tokens.accent.primary, opacity: pressed ? 0.85 : 1 },
           ]}>
           <Text style={[styles.primaryLabel, { color: tokens.accent.contrast }]}>
-            {isLast ? 'Pair your Mac' : 'Continue'}
+            {isLast ? 'Pair your desktop' : 'Continue'}
           </Text>
         </Pressable>
       </View>

@@ -19,7 +19,7 @@ export function paywallSubtitle(ent: Entitlement): string {
   if (ent.kind === 'expired') {
     return 'Your 3-day trial has ended. Unlock Muxy to keep connecting.';
   }
-  return 'Pay once to connect to your Mac.';
+  return 'Pay once to connect to your desktop.';
 }
 
 export function primaryCtaLabel({ entitlement, price }: CopyArgs): string {
@@ -61,7 +61,7 @@ export function sheetBullets({ entitlement, price }: CopyArgs): string[] {
   const priceText = price ?? 'a one-time purchase';
   if (entitlement.kind === 'beta') {
     return [
-      'During beta, connecting to your Mac is completely free — no countdown, no limits.',
+      'During beta, connecting to your desktop is completely free — no countdown, no limits.',
       `When Muxy reaches 1.0, a 3-day free trial will start on first pairing. After that, connecting will require a one-time purchase of ${priceText}.`,
       'Purchasing now is optional. If you do, you keep access for life — no subscription, no recurring charges.',
       'Tied to your store account — works on all your devices.',
@@ -70,7 +70,7 @@ export function sheetBullets({ entitlement, price }: CopyArgs): string[] {
   }
   return [
     'Free for 3 days starting from your first successful pairing.',
-    `After the trial ends, connecting to a Mac requires a one-time purchase of ${priceText}.`,
+    `After the trial ends, connecting to a desktop requires a one-time purchase of ${priceText}.`,
     'Pay once. No subscription, no recurring charges.',
     'Tied to your store account — works on all your devices.',
     'If you reinstall or switch devices, tap "Restore purchase" to recover access.',

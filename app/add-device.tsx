@@ -56,7 +56,7 @@ export default function AddDeviceScreen() {
     const trimmedHost = host.trim();
     const portNum = parseInt(port, 10);
     if (!trimmedHost) {
-      setError('Enter your Mac’s host or IP.');
+      setError('Enter your desktop’s host or IP.');
       return;
     }
     if (!Number.isFinite(portNum) || portNum < 1 || portNum > 65_535) {
@@ -100,7 +100,7 @@ export default function AddDeviceScreen() {
       const message =
         err instanceof PairingError
           ? err.kind === 'denied'
-            ? 'Pairing was denied on the Mac.'
+            ? 'Pairing was denied on the desktop.'
             : err.kind === 'timeout'
               ? 'Pairing timed out. Try again and approve faster.'
               : err.kind === 'connect'
@@ -121,7 +121,7 @@ export default function AddDeviceScreen() {
       case 'authenticating':
         return 'Checking saved credentials…';
       case 'awaiting-approval':
-        return 'Open Muxy on your Mac and approve this device.';
+        return 'Open Muxy on your desktop and approve this device.';
       case 'success':
         return 'Paired ✓';
       default:
@@ -148,7 +148,7 @@ export default function AddDeviceScreen() {
             label="Name"
             value={label}
             onChangeText={setLabel}
-            placeholder="Work Mac"
+            placeholder="Work desktop"
             editable={!busy}
             autoCapitalize="words"
             autoCorrect={false}
@@ -158,7 +158,7 @@ export default function AddDeviceScreen() {
             label="Host"
             value={host}
             onChangeText={setHost}
-            placeholder="192.168.1.10 or your-mac.local"
+            placeholder="192.168.1.10 or your-host.local"
             editable={!busy}
             autoCapitalize="none"
             autoCorrect={false}
@@ -203,7 +203,7 @@ export default function AddDeviceScreen() {
         </Pressable>
 
         <Text style={[styles.hint, { color: tokens.text.muted }]}>
-          On your Mac, open Muxy › Settings › Mobile and toggle the server on.
+          On your desktop, open Muxy › Settings › Mobile and toggle the server on.
         </Text>
       </ScrollView>
     </KeyboardAvoidingView>
