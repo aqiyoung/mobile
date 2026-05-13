@@ -1,6 +1,6 @@
 import { Redirect, Stack, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useEntitlement } from '@/billing';
 import { EntitlementFooter } from '@/components/billing/EntitlementFooter';
@@ -79,7 +79,7 @@ export default function DevicesScreen() {
       handleRepair(entry);
       return;
     }
-    if (entitlement.kind === 'expired') {
+    if (Platform.OS !== 'ios' && entitlement.kind === 'expired') {
       router.push('/paywall');
       return;
     }
@@ -152,7 +152,7 @@ export default function DevicesScreen() {
           ))}
         </ScrollView>
       )}
-      <EntitlementFooter />
+      {Platform.OS !== 'ios' ? <EntitlementFooter /> : null}
     </View>
   );
 }

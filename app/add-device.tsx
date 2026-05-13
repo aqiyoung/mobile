@@ -92,7 +92,9 @@ export default function AddDeviceScreen() {
       setNeedsRepair(finalEntryId, false);
       setActiveDevice(finalEntryId);
 
-      await useBillingStore.getState().startTrialIfAbsent();
+      if (Platform.OS !== 'ios') {
+        await useBillingStore.getState().startTrialIfAbsent();
+      }
 
       setPhase('success');
       router.back();
