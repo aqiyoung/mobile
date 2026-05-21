@@ -51,12 +51,7 @@
         }
       ],
       "expo-secure-store",
-      [
-        "react-native-iap",
-        {
-          "paymentProvider": "Play Store"
-        }
-      ],
+      "react-native-iap",
       [
         "expo-camera",
         {
