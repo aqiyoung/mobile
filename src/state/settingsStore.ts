@@ -43,7 +43,10 @@ export const useSettingsStore = create<SettingsStore>()(
         hasOnboarded: state.hasOnboarded,
         demoMode: state.demoMode,
       }),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => (state, error) => {
+        if (error) {
+          console.warn('[settingsStore] rehydration failed, continuing with defaults:', error);
+        }
         state?.setHasHydrated(true);
       },
     },

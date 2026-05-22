@@ -133,7 +133,10 @@ export const useDevicesStore = create<DevicesStore>()(
         connectionPhase: 'idle' as ConnectionPhase,
         connectionError: null,
       }),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => (state, error) => {
+        if (error) {
+          console.warn('[devicesStore] rehydration failed, continuing with defaults:', error);
+        }
         state?.setHasHydrated(true);
       },
     },

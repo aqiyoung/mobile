@@ -34,6 +34,14 @@ function NavStack() {
     SplashScreen.hideAsync().catch(() => {});
   }, [ready]);
 
+  // 超时兜底：5秒后强制隐藏启动屏，防止卡住
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      SplashScreen.hideAsync().catch(() => {});
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     loadNerdFont().catch(() => {});
   }, []);
