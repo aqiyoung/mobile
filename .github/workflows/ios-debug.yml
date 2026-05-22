@@ -1,0 +1,49 @@
+name: Build iOS Debug
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build-debug:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Expo prebuild (iOS)
+        run: npx expo prebuild --platform ios --no-install --clean --non-interactive
+
+      - name: Build iOS (Debug, no signing)
+        working-directory: ios
+        run: |
+          xcodebuild -workspace Muxy.xcworkspace \
+            -scheme Muxy \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Upload iOS build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-debug-build
+          path: ios/build/Build/Products/Debug-iphonesimulator/*.app
+          if-no-files-found: error
