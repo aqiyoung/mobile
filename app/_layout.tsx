@@ -4,12 +4,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect, useMemo } from 'react';
-import { AppState, Platform, StyleSheet, useColorScheme, View } from 'react-native';
+import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
 
-import { useBillingStore } from '@/billing';
 import { loadNerdFont } from '@/lib/nerdFont';
 import { useConnection, useDevicesStore, useSettingsStore } from '@/state';
 import { ThemeProvider, useTheme, useTokens } from '@/theme';
@@ -38,18 +37,6 @@ function NavStack() {
   useEffect(() => {
     loadNerdFont().catch(() => {});
   }, []);
-
-  useEffect(() => {
-    if (!ready) return;
-    if (Platform.OS === 'ios') return;
-    useBillingStore.getState().init().catch(() => {});
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        useBillingStore.getState().refresh().catch(() => {});
-      }
-    });
-    return () => sub.remove();
-  }, [ready]);
 
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(tokens.surface.primary).catch(() => {});
@@ -87,7 +74,6 @@ function NavStack() {
         <Stack.Screen name="index" />
         <Stack.Screen name="settings" options={{ presentation: 'modal' }} />
         <Stack.Screen name="add-device" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="paywall" options={{ presentation: 'fullScreenModal', headerShown: false }} />
         <Stack.Screen name="projects/index" />
         <Stack.Screen name="projects/[id]/index" />
         <Stack.Screen name="onboarding" options={{ headerShown: false, animation: 'fade' }} />

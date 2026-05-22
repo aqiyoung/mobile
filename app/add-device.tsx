@@ -12,7 +12,6 @@ import {
   View,
 } from 'react-native';
 
-import { useBillingStore } from '@/billing';
 import { HeaderIconButton } from '@/components/HeaderIconButton';
 import {
   getOrCreateInstallToken,
@@ -128,10 +127,6 @@ export default function AddDeviceScreen() {
       upsertDevice(entry);
       setNeedsRepair(finalEntryId, false);
       setActiveDevice(finalEntryId);
-
-      if (Platform.OS !== 'ios') {
-        await useBillingStore.getState().startTrialIfAbsent();
-      }
 
       setPhase('success');
       if (params.auto === '1') {

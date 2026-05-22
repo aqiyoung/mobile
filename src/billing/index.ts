@@ -1,6 +1,3 @@
 export { useBillingStore } from './billingStore';
-export { useEntitlement, useNow } from './useEntitlement';
-export { TRIAL_DURATION_MS, daysRemaining } from './entitlement';
+export { useEntitlement } from './useEntitlement';
 export type { Entitlement } from './entitlement';
-export { PRODUCT_ID } from './productId';
-export * as copy from './copy';

@@ -2,8 +2,7 @@ import { Redirect, Stack, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { useEntitlement } from '@/billing';
-import { EntitlementFooter } from '@/components/billing/EntitlementFooter';
+
 import { DeviceRow } from '@/components/DeviceRow';
 import { HeaderIconButton } from '@/components/HeaderIconButton';
 import { DEMO_DEVICE_ID } from '@/demo/demoBackend';
@@ -23,8 +22,6 @@ export default function DevicesScreen() {
   const removeDevice = useDevicesStore((s) => s.removeDevice);
   const connectionPhase = useDevicesStore((s) => s.connectionPhase);
   const connectionError = useDevicesStore((s) => s.connectionError);
-  const entitlement = useEntitlement();
-
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [errorByDevice, setErrorByDevice] = useState<Record<string, string>>({});
 
@@ -77,10 +74,6 @@ export default function DevicesScreen() {
     const entry = devices.find((d) => d.id === id);
     if (entry?.needsRepair) {
       handleRepair(entry);
-      return;
-    }
-    if (Platform.OS !== 'ios' && entitlement.kind === 'expired') {
-      router.push('/paywall');
       return;
     }
     setErrorByDevice((prev) => {
@@ -152,7 +145,6 @@ export default function DevicesScreen() {
           ))}
         </ScrollView>
       )}
-      {Platform.OS !== 'ios' ? <EntitlementFooter /> : null}
     </View>
   );
 }
