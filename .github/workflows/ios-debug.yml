@@ -28,11 +28,19 @@ jobs:
       - name: Expo prebuild (iOS)
         run: npx expo prebuild --platform ios --no-install --clean --non-interactive
 
+      - name: List iOS files
+        run: ls -la ios/
+
       - name: Build iOS (Debug, no signing)
         working-directory: ios
         run: |
-          xcodebuild -workspace Muxy.xcworkspace \
-            -scheme Muxy \
+          # Find the actual workspace name
+          WORKSPACE=$(find . -name "*.xcworkspace" | head -1 | sed 's|^\./||')
+          SCHEME=$(xcodebuild -list -workspace "$WORKSPACE" 2>/dev/null | grep -A1 'Schemes:' | tail -1 | xargs)
+          echo "Workspace: $WORKSPACE"
+          echo "Scheme: $SCHEME"
+          xcodebuild -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16' \
             -derivedDataPath build \
